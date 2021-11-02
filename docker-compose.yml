@@ -4,7 +4,7 @@ services:
     image: mysql:latest
     command: --default-authentication-plugin=mysql_native_password
     environment:
-      MYSQL_ROOT_PASSWORD: e9w86036f78sd9
+      MYSQL_ROOT_PASSWORD: root
     volumes:
     - "./database:/var/lib/mysql"
   db_pma:
@@ -14,13 +14,13 @@ services:
     ports:
     - 8082:80
     environment:
-      MYSQL_ROOT_PASSWORD: e9w86036f78sd9
+      MYSQL_ROOT_PASSWORD: root
       PMA_USER: root
-      PMA_PASSWORD: e9w86036f78sd9
+      PMA_PASSWORD: root
   www:
+    image: php:apache-espe
     depends_on:
     - db
-    image: php:apache
     volumes:
     - "./www:/var/www/html"
     ports:

@@ -1,0 +1,20 @@
+#e9w86036f78sd9
+
+##Juste un fichier de notes##
+
+Pour démarrer: 
+    - docker-compose up -d --build
+
+Une fois le projet démarré, les autres fois :
+    - docker-compose up -d
+
+Voici les noms des containes
+
+    - audiok_www_1 pour php:apache
+
+    - audiok_db_pma_1 pour phpmyadmin
+
+    - audiok_db_1 pour mysql
+
+Pour entrer dans un container surtout le php:
+    - docker exec -it audiok_www_1 bash
