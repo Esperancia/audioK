@@ -26,10 +26,14 @@ class Database
 	public $query_count_all = 0, $query_count_success = 0, $query_count_error = 0;
 	private $debug, $stmt, $result, $credentials = array(), $filters = array();
 
+	public $charset;
+
 	// Sets up database connection
 	public function __construct($name, $server, $username, $password, $charset = "utf8", $debug = true, $errormsg = "Database connection failed.")
 	{
 		$this->debug = $debug;
+
+		$this->charset = $charset;
 		
 		if ($this->debug) { mysqli_report(MYSQLI_REPORT_ERROR); }
 		else { mysqli_report(MYSQLI_REPORT_OFF); }
@@ -60,14 +64,16 @@ class Database
 			
 			if (!$this->connection_error_code)
 			{
-				$this->connection->set_charset($charset);
-				if ($charset == "utf8") { $this->connection->query("SET NAMES utf8"); }
+				$this->connection->set_charset($this->charset);
+				if ($this->charset == "utf8") { $this->connection->query("SET NAMES utf8"); }
 				
 				$this->server_info = $this->connection->server_info;
 				$this->client_info = $this->connection->client_info;
 				$this->host_info   = $this->connection->host_info;
+
+				echo "bd connectée " . $this->server_info;
 			}
-			else if ($this->connection_error_code && $errormesg !== false)
+			else if ($this->connection_error_code && $errormsg !== false)
 			{
 				error_log("MySQL database error:  ".$this->connection_error." for error code ".$this->connection_error_code);
 				if ($this->debug) { die("Database Connection Error ".$this->connection_error_code.": ".$this->connection_error); } else { die($errormsg); }

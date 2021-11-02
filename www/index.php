@@ -7,6 +7,7 @@
 
 	// Initialize database
 	//$db = new Database('test', 'localhost', 'root', ''); // (database_name, host, user, password)
+	$db = new Database('audiok', 'audiok_db_1', 'root', 'root');
 
 	/*
 		MySQL samples
