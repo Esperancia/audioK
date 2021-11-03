@@ -34,6 +34,7 @@ class Database
 		$this->debug = $debug;
 
 		$this->charset = $charset;
+		$this->errormsg = $errormsg;
 		
 		if ($this->debug) { mysqli_report(MYSQLI_REPORT_ERROR); }
 		else { mysqli_report(MYSQLI_REPORT_OFF); }
@@ -71,12 +72,12 @@ class Database
 				$this->client_info = $this->connection->client_info;
 				$this->host_info   = $this->connection->host_info;
 
-				echo "bd connectée " . $this->server_info;
+				echo "bd connectée. Serveur: " . $this->server_info . ", Client: " . $this->client_info . ", Host: " . $this->host_info;
 			}
-			else if ($this->connection_error_code && $errormsg !== false)
+			else if ($this->connection_error_code && $this->errormsg !== false)
 			{
 				error_log("MySQL database error:  ".$this->connection_error." for error code ".$this->connection_error_code);
-				if ($this->debug) { die("Database Connection Error ".$this->connection_error_code.": ".$this->connection_error); } else { die($errormsg); }
+				if ($this->debug) { die("Database Connection Error ".$this->connection_error_code.": ".$this->connection_error); } else { die($this->errormsg); }
 			}
 		}
 	}
@@ -96,7 +97,7 @@ class Database
 
 	public function filter_exists($type)
 	{
-		return $this->filters[$type] ? true : false;
+		return ( isset($this->filters[$type]) && $this->filters[$type] ) ? true : false;
 	}
 
 	private function apply_filter($type, $args = array())
