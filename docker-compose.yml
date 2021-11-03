@@ -1,8 +1,9 @@
 version: '3.6'
 services:
   db:
-    image: mysql:latest
+    image: mysql:5.7
     command: --default-authentication-plugin=mysql_native_password
+    restart: always
     environment:
       MYSQL_ROOT_PASSWORD: root
     volumes:
@@ -17,11 +18,16 @@ services:
       MYSQL_ROOT_PASSWORD: root
       PMA_USER: root
       PMA_PASSWORD: root
+      MYSQL_HOST: mysql
   www:
     image: php:apache-espe
+    build:
+      context: ./docker/php
+      dockerfile: ./Dockerfile
     depends_on:
     - db
     volumes:
     - "./www:/var/www/html"
+    #- "./logs:/usr/local/etc/php/php.ini"
     ports:
     - 8081:80
