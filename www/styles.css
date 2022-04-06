@@ -1,0 +1,26 @@
+h1 {
+    font-size: 14px;
+}
+
+input[type=text] {
+    float: right;
+}
+
+body > div {
+    width: 80%;
+    margin: 15px auto;
+}
+
+form {
+    width: 50%;
+    margin: 15px auto 20px;
+}
+
+.row {
+    width: 100%;
+    padding: 15px;
+}
+
+#list {
+    margin-top: 5%;
+}

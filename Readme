@@ -18,3 +18,7 @@ Voici les noms des containes
 
 Pour entrer dans un container surtout le php:
     - docker exec -it audiok_www_1 bash
+
+Notes pfff à moi même vu que j'oublie trop vite: 
+- La bd se trouve dans le dossier database avec d'autres fichiers de mysql qui sont ignorés par git.
+- la BD que j'ai créée est audiok et est répertoriée et suivie par git. D'où pour vider il faut supprimer ses tables.

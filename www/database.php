@@ -72,7 +72,7 @@ class Database
 				$this->client_info = $this->connection->client_info;
 				$this->host_info   = $this->connection->host_info;
 
-				echo "bd connectée. Serveur: " . $this->server_info . ", Client: " . $this->client_info . ", Host: " . $this->host_info;
+				//echo "bd connectée. Serveur: " . $this->server_info . ", Client: " . $this->client_info . ", Host: " . $this->host_info;
 			}
 			else if ($this->connection_error_code && $this->errormsg !== false)
 			{
@@ -239,7 +239,7 @@ class Database
 					error_log("MySQL database error (STMT):  ".$this->stmt->error." for query ".$query." in ".$debug_backtrace[1]["file"]." on line ".$debug_backtrace[1]["line"]);
 					if ($this->debug)
 					{
-						echo "MySQL database error (STMT): ".$this->stmt->error." for query <pre><code>".$query."</code></pre> in ".$debug_backtrace[1]["file"]." on line ".$debug_backtrace[1]["line"];
+						echo "MySQL database error (STMT): ".$this->stmt->error." for query <pre><code>".$query."</code></pre> in ".$debug_backtrace[1]["file"]." on line ".$debug_backtrace[1]["line"] . "\n";
 						exit();
 					}
 				}
